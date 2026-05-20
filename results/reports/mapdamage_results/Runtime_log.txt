@@ -1,0 +1,7 @@
+2026-04-02 16:07:24,032	INFO	main: Started with the command: /home/bioinf2026/laskina/miniconda3/envs/aDNA_analysis/bin/mapDamage -i /home/bioinf2026/laskina/miurus_project/results/mapping_v2/sep_bams/miurus_merged.bam -r /home/bioinf2026/laskina/miurus_project/references/Microtus/M_ochrogaster_ref.fna -d /home/bioinf2026/laskina/miurus_project/results/damage/mapdamage_v2_merged_only -l 100
+2026-04-02 16:17:03,176	DEBUG	main: BAM read in 581.365108 seconds
+2026-04-02 16:18:50,359	INFO	mapdamage.rscript: Performing Bayesian estimates
+2026-04-02 16:18:50,359	DEBUG	mapdamage.rscript: Call: Rscript /home/bioinf2026/laskina/miniconda3/envs/aDNA_analysis/lib/python3.14/site-packages/mapdamage/Rscripts/stats/runGeneral.R --args 30 10000 10 50000 0 0 1 1 0 0 1 12 /home/bioinf2026/laskina/miurus_project/results/damage/mapdamage_v2_merged_only/ /home/bioinf2026/laskina/miniconda3/envs/aDNA_analysis/lib/python3.14/site-packages/mapdamage/Rscripts/stats/ /home/bioinf2026/laskina/miurus_project/results/damage/mapdamage_v2_merged_only/Stats_out 0 0 0 /home/bioinf2026/laskina/miurus_project/results/damage/mapdamage_v2_merged_only/acgt_ratio.csv 0 0
+2026-04-02 16:24:32,975	DEBUG	mapdamage.rscript: Bayesian estimates completed in 342.615585 seconds
+2026-04-02 16:24:32,975	INFO	main: Successful run
+2026-04-02 16:24:32,976	DEBUG	main: Run completed in 1031.165114 seconds
