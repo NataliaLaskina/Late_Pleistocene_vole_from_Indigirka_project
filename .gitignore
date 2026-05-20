@@ -1,0 +1,27 @@
+# System files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.idea/
+.vscode/
+*.pyc
+__pycache__/
+
+# Large data (protect yourself from accidental add)
+*.fastq.gz
+*.bam
+*.bai
+*.cram
+*.k2d
+*.trees
+
+# Intermediate files you don't need in repo
+*.sai
+*.sam
+results/preprocessing/*/
+results/mapping/
+results/mito_mapping/
