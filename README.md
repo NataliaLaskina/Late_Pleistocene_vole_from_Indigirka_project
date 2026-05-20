@@ -55,8 +55,6 @@ This repository contains the code, scripts, and minimal essential outputs. Large
             ├── Length_plot.pdf                # ← Fragment length distribution
             ├── 5pCtoT_freq.txt                # C→T frequencies
             ├── 3pGtoA_freq.txt                # G→A frequencies
-            ├── misincorporation.txt           # Overall stats
-            ├── dnacomp.txt                    # DNA composition
             ├── lgdistribution.txt             # Length distribution
             ├── Stats_out_MCMC_post_pred.pdf   # MCMC posterior predictive check diagnostics (model fit validation)
             └── Runtime_log.txt                # Run log
@@ -281,7 +279,7 @@ Comprehensive quality control summary including read length distributions, quali
 - Typical aDNA damage profile confirmed
 
 📁 [mapdamage_results/](results/reports/mapdamage_results/)  
-Complete ancient DNA authentication data: cytosine deamination patterns (5' C→T and 3' G→A frequencies), fragment length distributions, misincorporation profiles, and MCMC posterior predictive checks confirming authentic aDNA damage signatures.
+Complete ancient DNA authentication data: cytosine deamination patterns (5' C→T and 3' G→A frequencies), fragment length distributions, and MCMC posterior predictive checks confirming authentic aDNA damage signatures.
 
 ### Ancient Mitogenome Assembly
 
