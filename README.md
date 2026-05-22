@@ -22,11 +22,11 @@ This repository contains the code, scripts, and minimal essential outputs. Large
 
 ```text
 .
-├── README.md                    # This file
-├── environment.yml              # Conda dependencies
-├── .gitignore                   # Exclusions for large files
+├── README.md                                  # This file
+├── environment.yml                            # Conda dependencies
+├── .gitignore                                 # Exclusions for large files
 │
-├── scripts/                     # All pipeline scripts (executable)
+├── scripts/                                   # All pipeline scripts (executable)
 │   ├── 01_preprocess_ancient_dna.sh
 │   ├── 02_build_kraken_db.sh
 │   ├── 03_map_and_damage.sh
@@ -36,10 +36,10 @@ This repository contains the code, scripts, and minimal essential outputs. Large
 │   ├── 07_alternative_Microtus_mitogenome_phylogeny.sh
 │   ├── 08_cytb_tip_dating.sh
 │   ├── 09_cytb_ml_tree.sh
-│   ├── rename_tree.py           # Utility: clean tree labels
-│   ├── draw_tree.R              # Tree Visualization
+│   ├── rename_tree.py                         # Utility: clean tree labels
+│   ├── draw_tree.R                            # Tree Visualization
 │   └── kraken_build/
-│       └── download_kraken.sh   # Helper: download genomes
+│       └── download_kraken.sh                 # Helper: download genomes
 │
 ├── figures/                     
 │   ├── trees/
@@ -52,15 +52,15 @@ This repository contains the code, scripts, and minimal essential outputs. Large
 │   
 └── results/             
     ├── trees/
-    │   ├── mitogenome_tree_full.treefile     # Main ML tree
-    │   ├── cytb_tree_ml_named.treefile       # Cytb ML tree
-    │   ├── cytb_mcc_named.tree               # Dated BEAST2 tree (MCC)
-    │   └── cytb_tip_dating.log               # Сontains the MCMC sampling statistics from the BEAST2 Bayesian dating analysis (open it in Tracer)
+    │   ├── mitogenome_tree_full.treefile      # Main ML tree
+    │   ├── cytb_tree_ml_named.treefile        # Cytb ML tree
+    │   ├── cytb_mcc_named.tree                # Dated BEAST2 tree (MCC)
+    │   └── cytb_tip_dating.log                # Сontains the MCMC sampling statistics from the BEAST2 Bayesian dating analysis (open it in Tracer)
     └── reports/
-        ├── multiqc_report.html               # Full QC report (interactive)
-        └── mapdamage_results/                # KEY mapDamage outputs
-            ├── Fragmisincorporation_plot.pdf  # ← C→T damage pattern
-            ├── Length_plot.pdf                # ← Fragment length distribution
+        ├── multiqc_report.html                # Full QC report (interactive)
+        └── mapdamage_results/                 # KEY mapDamage outputs
+            ├── Fragmisincorporation_plot.pdf  # C→T damage pattern
+            ├── Length_plot.pdf                # Fragment length distribution
             ├── 5pCtoT_freq.txt                # C→T frequencies
             ├── 3pGtoA_freq.txt                # G→A frequencies
             ├── lgdistribution.txt             # Length distribution
@@ -80,7 +80,7 @@ results/
 │   └── 02_adapterremoval/      # Collapsed reads
 ├── kraken2_results/            # Classification reports
 ├── mapping/                    # BAM files, damage plots
-├── damage/                       # Full mapDamage output (PDFs, R scripts)
+├── damage/                     # Full mapDamage output (PDFs, R scripts)
 ├── mito_mapping/               # Consensus mitogenome assembly
 ├── mitoz_analysis/             # De novo assembled mitogenomes
 └── phylogeny/
