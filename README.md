@@ -214,7 +214,7 @@ The `rename_tree.py` script uses only Python standard library — no additional 
 
 **Script:** `scripts/08_cytb_tip_dating.sh`
 
-- **Tools:** `BEAST2`, `TreeAnnotator`, `rename_tree.py`
+- **Tools:** `BEAST2`, `TreeAnnotator`, `Tracer`, `FigTree`, `rename_tree.py`
 - **Action:** Constructs a dated phylogeny using the ancient sample's age (37.7 kya) as a tip calibration.
 - **Output:** `cytb_mcc.tree` (Dated tree with HPD intervals).
 - **Workflow**: BEAST2 v2.7.7 → Tracer (ESS > 200) → TreeAnnotator → FigTree
