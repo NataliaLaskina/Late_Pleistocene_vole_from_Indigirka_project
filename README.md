@@ -1,8 +1,8 @@
 # Late_Pleistocene_vole_from_Indigirka_project
 
-**Objective:** Reconstruct phylogeny and evolutionary history of *Microtus (Stenocranius) egorovi* (37,700 ± 2,200 BP, Indigirka River) using ancient DNA.
+**Objective:** Reconstruct phylogeny and evolutionary history of *Microtus (S) stenocranius egorovi* (37,700 ± 2,200 BP, Indigirka River) using ancient DNA.
 
-In the Late Pleistocene alluvial deposits of the upper Indigirka River (Eastern Yakutia), paleontologists discovered mummified vole specimens. Morphological analysis suggested similarity to the Nearctic singing vole *Microtus miurus*, currently distributed only in North America. This project uses NGS ancient DNA data to resolve its phylogenetic position.
+In the Late Pleistocene deposits of the upper Indigirka River (Eastern Yakutia, Russia), paleontologists discovered a mummified vole specimen initially assigned to the narrow-headed vole Stenocranius gregalis. Subsequent morphological analysis of the masticatory surface pattern revealed affinities with the singing vole Microtus miurus, a species currently distributed exclusively in the tundra zone of North America. This finding raises an intriguing biogeographical question regarding the historical distribution of M. miurus and its potential presence in Eurasia during the Late Pleistocene. 
 
 ---
 
@@ -101,8 +101,10 @@ chmod +x scripts/kraken_build/download_kraken.sh
 3. **Run the pipeline:** Scripts are numbered by execution order. Run them sequentially.
 
 ### Tree Visualization
+
 **Reproduce the exact tree figure from the presentation**
-Rscript scripts/plot_tree_presentation.R
+
+Rscript: `scripts/plot_tree_presentation.R`
 
 ---
 
@@ -366,6 +368,26 @@ Detailed list of key output files:
 - **Trees:**
     - `results/phylogeny/mitogenomes/mitogenome_tree_full.treefile`
     - `results/phylogeny/cytb_analysis/cytb_mcc.tree`
+
+---
+
+## Literature
+
+- Golenishchev, F. N. (2008). The narrow-skulled vole Egorov (Rodentia, Arvicolinae) from the Late Pleistocene of Western Siberia—a North American migrant? Paleontological Journal, 42(2), 193–198. https://doi.org/10.1134/S0031030108020080
+- Cole, F. R., & Wilson, D. E. (2010). Microtus miurus (Rodentia: Cricetidae). Mammalian Species, 42(855), 75–89. https://doi.org/10.1644/855.1
+- Weksler, M., Lanier, H. C., & Olson, L. E. (2010). Eastern Beringian biogeography: historical and spatial genetic structure of singing voles in Alaska. Journal of Biogeography, 37(8), 1414–1431. https://doi.org/10.1111/j.1365-2699.2010.02310.x
+- Lord, E., et al. (2025). Genome analyses suggest recent speciation and postglacial isolation in the Norwegian lemming. Proceedings of the National Academy of Sciences, 122(28), e2424333122. https://doi.org/10.1073/pnas.2424333122
+- Chen, S., Zhou, Y., Chen, Y., & Gu, J. (2018). fastp: an ultra-fast all-in-one FASTQ preprocessor. Bioinformatics, 34(17), i884–i890. https://doi.org/10.1093/bioinformatics/bty560
+- Schubert, M., Lindgreen, S., & Orlando, L. (2016). AdapterRemoval v2: rapid adapter trimming, identification, and read merging. BMC Research Notes, 9, 88. https://doi.org/10.1186/s13104-016-1900-2
+- Wood, D. E., Lu, J., & Langmead, B. (2019). Improved metagenomic analysis with Kraken 2. Genome Biology, 20, 257. https://doi.org/10.1186/s13059-019-1891-0
+- Jónsson, H., Ginolhac, A., Schubert, M., Johnson, P. L., & Orlando, L. (2013). mapDamage2.0: fast approximate Bayesian estimates of ancient DNA damage parameters. Bioinformatics, 29(13), 1682–1684. https://doi.org/10.1093/bioinformatics/btt193
+- Briggs, A. W., et al. (2007). Patterns of damage in genomic DNA sequences from a Neandertal. Proceedings of the National Academy of Sciences, 104(37), 14616–14621. https://doi.org/10.1073/pnas.0704665104
+- Li, H., & Durbin, R. (2009). Fast and accurate short read alignment with Burrows–Wheeler transform. Bioinformatics, 25(14), 1754–1760. https://doi.org/10.1093/bioinformatics/btp324
+- Minh, B. Q., et al. (2020). IQ-TREE 2: new models and efficient methods for phylogenetic inference in the genomic era. Molecular Biology and Evolution, 37(5), 1530–1534. https://doi.org/10.1093/molbev/msaa015
+- Bouckaert, R., et al. (2019). BEAST 2.5: an advanced software platform for Bayesian evolutionary analysis. PLOS Computational Biology, 15(4), e1006650. https://doi.org/10.1371/journal.pcbi.1006650
+- De Jong, M. J., et al. (2023). Range-wide whole-genome resequencing of the brown bear reveals drivers of intraspecies divergence. Communications Biology, 6(1), 153. https://doi.org/10.1038/s42003-023-04514-w
+- Meng, G., Li, Y., Yang, C., & Liu, S. (2019). MitoZ: a toolkit for animal mitochondrial genome assembly, annotation and visualization. Nucleic acids research, 47(11), e63. https://doi.org/10.1093/nar/gkz173.
+- Danecek P, Bonfield JK, Liddle J, Marshall J, Ohan V, Pollard MO, Whitwham A, Keane T, McCarthy SA, Davies RM, Li H. Twelve years of SAMtools and BCFtools. GigaScience. 2021;10(2):giab008. doi:10.1093/gigascience/giab008
 
 ---
 
