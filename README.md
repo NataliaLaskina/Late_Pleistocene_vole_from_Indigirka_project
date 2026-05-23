@@ -429,7 +429,7 @@ jellyfish count -C -m 21 -s 20G -t 32 -o SRR26061978_kmer_21.jf SRR26061978_1.fa
 
 jellyfish histo -o kmer_histogram_21.txt SRR26061978_kmer_21.jf
 ```
-The report from Genomescope is available in in the folder "results/reports/fastqc_results/genomescope_results". The histogram demonstrates the abnormal peak of errors and two "true" peaks which are characteristic for organisms with high level of 
+The report from Genomescope is available in the folder "results/reports/fastqc_results/genomescope_results". The histogram demonstrates the abnormal peak of errors and two "true" peaks which are characteristic for organisms with high level of 
 heterozygosity.
 
 The pipeline of the best assembly attempt is the following:
