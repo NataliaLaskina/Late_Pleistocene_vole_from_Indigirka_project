@@ -23,7 +23,9 @@ This repository contains the code, scripts, and minimal essential outputs. Large
 ```text
 .
 ├── README.md                                  # This file
-├── environment.yml                            # Conda dependencies
+├── environments/                              # Conda dependencies                   
+│   ├── environment.yml
+│   ├── environment_for assembly.yml           
 ├── .gitignore                                 # Exclusions for large files
 │
 ├── scripts/                                   # All pipeline scripts (executable)
@@ -40,7 +42,7 @@ This repository contains the code, scripts, and minimal essential outputs. Large
 │   ├── draw_tree.R                            # Tree Visualization
 │   └── kraken_build/
 │       └── download_kraken.sh                 # Helper: download genomes
-│
+    └──trial_de_novo_
 ├── figures/                     
 │   ├── trees/
 │   │   ├── cytb_dated_tree.jpg
@@ -122,7 +124,7 @@ Rscript: `scripts/draw_tree.R`
 
 ```bash
 # Create environment
-conda env create -f environment.yml
+conda env create -f environments/environments.yaml
 
 # Activate
 conda activate late_pleistocene_vole_project
@@ -383,6 +385,130 @@ Detailed list of key output files:
 
 ---
 
+## Addition: trial assembly de novo of modern M.miurus genome
+
+Within the framework of our project, we undertook de novo genome assembly of the extant species M. miurus to enable subsequent nuclear phylogenetic inference.
+The preprocessed data of whole-genome sequencing reads generated on the Illumina platform as part of the DNA Zoo project. During the study, we tested some assemblers that do not require large amounts of RAM (because of lack of a server with sufficient RAM).
+
+For beginning download the data using the links in data/modern_miurus_reads_links, and create the necessary environment using environments/environment_for_assembly.yml:
+
+```bash
+# Create environment
+conda env create -f environments/environment_for_assembly.yml
+```
+
+The pipeline of the best attempt is the following:
+
+---
+
+## 🔧 Pipeline Steps
+
+### Step 1: Environment Activation & Package Verification
+
+- **Action:** Activates the pre-configured `assembly_pipeline` Conda environment and verifies that all required tools are correctly installed and accessible. Each tool's version is displayed to confirm successful installation.
+- **Input:** Existing Conda environment named `assembly_pipeline`
+- **Output:** Confirmation of environment activation and version information for each tool (lighter, megahit, BUSCO, redundans).
+
+---
+
+### Step 2: Lighter Error Correction
+
+- **Tools:** `lighter`
+- **Action:** Performs k-mer based error correction on paired-end Illumina reads. Uses a k-mer size of 27 with genome size estimation of 3 Gb (mammalian genome), corrects up to 2 errors per k-mer position, and trims low-quality bases.
+- **Parameters:** `-K 27 3000000000`, `-t 40`, `-maxcor 2`, `-trim`, `-noQual`
+- **Input:** Raw paired-end FASTQ files (`SRR26061978_1.fastq`, `SRR26061978_2.fastq`)
+- **Output:** Corrected FASTQ files (`*.cor.fq`)
+
+---
+
+### Step 3: MEGAHIT De Novo Assembly
+
+- **Tools:** `megahit`
+- **Action:** Assembles error-corrected reads into contigs using a sensitive preset. Uses iterative k-mer approach (k-min 27 to k-max 141, step 10) and filters contigs shorter than 500 bp.
+- **Parameters:** `--preset sensitive`, `--min-contig-len 500`, `-t 12`, `-m 0.9`, `-o megahit_optimized`
+- **Input:** Corrected FASTQ files (`*.cor.fq`)
+- **Output:** `megahit_optimized/final.contigs.fa`
+
+---
+
+### Step 4: Redundans Redundancy Reduction
+
+- **Tools:** `redundans.py`
+- **Action:** Removes redundant contigs and reduces assembly redundancy. Runs without scaffolding and gap closing to preserve only primary sequences.
+- **Parameters:** `--identity 0.7`, `--overlap 0.8`, `--noscaffolding`, `--nogapclosing`, `-t 40`
+- **Input:** MEGAHIT assembly (`megahit_optimized/final.contigs.fa`)
+- **Output:** `redundans_output/scaffolds.reduced.fa` (final assembly)
+
+---
+
+### Step 5: BUSCO Quality Assessment
+
+- **Tools:** `busco`
+- **Action:** Evaluates assembly completeness using the mammalian conserved single-copy ortholog database (mammalia_odb10). Assesses genome completeness by searching for universal single-copy genes.
+- **Parameters:** `-m genome`, `-c 40`, `-l mammalia_odb10`
+- **Input:** Final assembly from Redundans
+- **Output:** BUSCO summary statistics (`busco_megahit_best_redun/`), including percentage of complete, fragmented, and missing genes.
+
+---
+
+### Step 6: Logging & Output Summary
+
+- **Tools:** `tee`
+- **Action:** Captures all terminal output to a timestamped log file in the `logs/` directory. Displays final summary of all output files with their locations.
+- **Output:** `logs/assembly_pipeline_YYYYMMDD_HHMMSS.log`
+
+---
+
+## 📊 Pipeline Summary
+
+| Step | Tool | Input | Output |
+|:----:|:----:|:-----:|:------:|
+| 1 | Conda | `environment_for_assembly.yml` | Conda environment |
+| 2 | Lighter | Raw FASTQ | Corrected FASTQ |
+| 3 | MEGAHIT | Corrected FASTQ | Contigs (`final.contigs.fa`) |
+| 4 | Redundans | Contigs | Reduced assembly |
+| 5 | BUSCO | Reduced assembly | Completeness report |
+
+## Results
+
+However, the quality of the resulting assemblies proved unsatisfactory: the best assembly was characterized by a high degree of fragmentation which may be attributed to the high heterozygosity typical of natural populations and the abundance of repetitive genomic elements. 
+
+The statistics of the best final assembly looks like this:
+
+| Metric                    | redundans_output/scaffolds.reduced.fa |
+| ------------------------- | ------------------------------------- |
+| # contigs                 | 271390                                |
+| bases                     | 2,171,064,612                         |
+| GC [%]                    | 42.31                                 |
+| contigs >1kb              | 226,531                               |
+| bases in contigs >1kb     | 2,138,393,772                         |
+| N50                       | 16,973                                |
+| N90                       | 3,780                                 |
+| Ns                        | 0                                     |
+| longest                   | 216,487                               |
+
+
+According to BUSCO assessment, we have got the following results:
+
+| Metric                                        | Value                                        |
+| --------------------------------------------- | -------------------------------------------- |
+| Complete BUSCOs (C)                           | 52.8% [S: 51.8%, D: 1.0%]                   |
+| Fragmented BUSCOs (F)                         | 20.2%                                        |
+| Missing BUSCOs (M)                            | 26.9%                                        |
+| Total BUSCO groups searched                   | 9226                                         |
+| Complete with internal stop codons (E)        | 9.2%                                         |
+| Complete BUSCOs count (C)                     | 4874                                         |
+| └─ of which with internal stop codons         | 447                                          |
+| Complete & single-copy count (S)              | 4779                                         |
+| Complete & duplicated count (D)               | 95                                           |
+| Fragmented count (F)                          | 1867                                         |
+| Missing count (M)                             | 2485                                         |
+
+
+Nevertheless, we decided to add the pipeline of the best attempt into the repository in the hope to get some valuable comments and advice🌼. 
+
+---
+
 ## References
 
 - Golenishchev, F. N. (2008). Egorov’s narrow-skulled vole (Rodentia, Arvicolinae) from the Late Pleistocene of Eastern Siberia, a North American immigrant. Paleontological Journal, 42, 292–296. https://doi.org/10.1134/S0031030108030118
@@ -408,5 +534,6 @@ Detailed list of key output files:
 **Authors:** 
 - Natalia Laskina lask.natalia@gmail.com 
 - Liliya Revyakina gigliolaverde@gmail.com   
+
 
 **Year:** 2026
