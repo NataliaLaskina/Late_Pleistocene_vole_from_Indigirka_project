@@ -21,6 +21,12 @@ echo ""
 #===============================================================================
 # STEP 1: Combine sequences and standardize headers
 #===============================================================================
+
+# Download from NCBI GenBank
+# Search: "Microtus mitochondrial"
+# Filter: complete genome + voucher specimens
+# Added: ancient vole mitogenome + newly assembled M. mexicanus and M. oregoni + Arvicola amphibius
+
 echo "[1/4] Combining FASTA files and cleaning headers..."
 
 cd "$PHYLO_DIR"
