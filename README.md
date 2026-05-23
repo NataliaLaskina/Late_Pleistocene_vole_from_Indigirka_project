@@ -86,7 +86,7 @@ This repository contains the code, scripts, and minimal essential outputs. Large
 
 ### 🧬 Generated Results Structure (Created Locally)
 
-_Note: These folders are created automatically when you run the scripts._
+_Note: These folders are created automatically when you run the scripts (except the script trial_de_novo_assembly.sh)._
 
 ```text
 results/
