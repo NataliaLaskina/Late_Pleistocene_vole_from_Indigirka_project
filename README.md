@@ -400,8 +400,12 @@ Detailed list of key output files:
 
 ## Addition: trial assembly de novo of modern M.miurus genome
 
-Within the framework of our project, we undertook de novo genome assembly of the extant species M. miurus to enable subsequent nuclear phylogenetic inference.
+Within the framework of our project, we undertook de novo genome assembly of the modern species M. miurus to enable subsequent nuclear phylogenetic inference.
 The preprocessed data of whole-genome sequencing reads generated on the Illumina platform as part of the DNA Zoo project. During the study, we tested some assemblers that do not require large amounts of RAM (because of lack of a server with sufficient RAM).
+However, the quality of the resulting assemblies proved unsatisfactory: the best assembly was characterized by a high degree of fragmentation which may be attributed to the high heterozygosity typical of natural populations and the abundance of repetitive genomic elements. 
+Nevertheless, we decided to add the pipeline of the best attempt into the repository in the hope to get some valuable comments and advice🌼. 
+
+### Preparing
 
 For beginning download the data using the links in data/modern_miurus_reads_links, and create the necessary environment using environments/environment_for_assembly.yml:
 
@@ -409,8 +413,15 @@ For beginning download the data using the links in data/modern_miurus_reads_link
 # Create environment
 conda env create -f environments/environment_for_assembly.yml
 ```
+Before assembly quality control was done:
+
+```bash
+fastqc SRR26061978_1.fastq.gz
+fastqc SRR26061978_2.fastq.gz
+```
 
 The report from FASTQC is available in the folder "results/reports/fastqc_results" (modern_miurus_SRR26061978_1_fastqc.html).
+
 The histogram of k-mer distribution was made with jellyfish:
 
 ```bash
@@ -418,7 +429,8 @@ jellyfish count -C -m 21 -s 20G -t 32 -o SRR26061978_kmer_21.jf SRR26061978_1.fa
 
 jellyfish histo -o kmer_histogram_21.txt SRR26061978_kmer_21.jf
 ```
-The report from Genomescope is available in in the folder "results/reports/fastqc_results/genomescope_results".
+The report from Genomescope is available in in the folder "results/reports/fastqc_results/genomescope_results". The histogram demonstrates the abnormal peak of errors and two "true" peaks which are characteristic for organisms with high level of 
+heterozygosity.
 
 The pipeline of the best assembly attempt is the following:
 
@@ -426,7 +438,7 @@ The pipeline of the best assembly attempt is the following:
 
 ## 🔧 Pipeline Steps
 
-### Step 1: Environment Activation & Package Verification
+### Step 1: Package Verification
 
 - **Action:** Verifies that all required tools are correctly installed and accessible. Each tool's version is displayed to confirm successful installation.
 - **Input:** Existing Conda environment named `assembly_pipeline`
@@ -501,7 +513,7 @@ chmod +x scripts/trial_de_novo_assembly.sh
 
 ## Results
 
-However, the quality of the resulting assemblies proved unsatisfactory: the best assembly was characterized by a high degree of fragmentation which may be attributed to the high heterozygosity typical of natural populations and the abundance of repetitive genomic elements. 
+
 
 The statistics of the best final assembly looks like this:
 
@@ -535,7 +547,7 @@ According to BUSCO assessment, we have got the following results:
 | Missing count (M)                             | 2485                                         |
 
 
-Nevertheless, we decided to add the pipeline of the best attempt into the repository in the hope to get some valuable comments and advice🌼. 
+
 
 ---
 
