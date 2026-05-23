@@ -112,7 +112,7 @@ chmod +x scripts/kraken_build/download_kraken.sh
 
 **Reproduce the exact tree figure from the presentation**
 
-Rscript: `scripts/plot_tree_presentation.R`
+Rscript: `scripts/draw_tree.R`
 
 ---
 
@@ -219,7 +219,7 @@ The `rename_tree.py` script uses only Python standard library — no additional 
 - **Tools:** `BEAST2`, `TreeAnnotator`, `Tracer`, `FigTree`, `rename_tree.py`
 - **Action:** Constructs a dated phylogeny using the ancient sample's age (37.7 kya) as a tip calibration.
 - **Output:** `cytb_mcc.tree` (Dated tree with HPD intervals).
-- **Workflow**: BEAST2 v2.7.7 → Tracer (ESS > 200) → TreeAnnotator → FigTree
+- **Workflow**: BEAST2 v2.7.7 → Tracer → TreeAnnotator → FigTree
 
 #### 📊 Data
 - **Gene**: Cytochrome b (cytb), ~1140 bp
