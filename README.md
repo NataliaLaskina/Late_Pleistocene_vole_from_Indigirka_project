@@ -1,16 +1,16 @@
 # Late_Pleistocene_vole_from_Indigirka_project
 
-In the Late Pleistocene deposits of the upper Indigirka River (Eastern Yakutia, Russia), paleontologists discovered a mummified vole specimen initially assigned to the narrow-headed vole Stenocranius gregalis. Subsequent morphological analysis of the masticatory surface pattern revealed affinities with the singing vole Microtus miurus, a species currently distributed exclusively in the tundra zone of North America. This finding raises an intriguing biogeographical question regarding the historical distribution of M. miurus and its potential presence in Eurasia during the Late Pleistocene. 
+In the Late Pleistocene deposits of the upper Indigirka River (Eastern Yakutia, Russia), paleontologists discovered a mummified vole specimen initially assigned to the narrow-headed vole _Stenocranius gregalis_. Subsequent morphological analysis of the masticatory surface pattern revealed affinities with the singing vole _Microtus miurus_, a species currently distributed exclusively in the tundra zone of North America. This finding raises an intriguing biogeographical question regarding the historical distribution of M. miurus and its potential presence in Eurasia during the Late Pleistocene. 
 
-**Objective:** Reconstruct phylogeny and evolutionary history of *Microtus (S) stenocranius egorovi* (37,700 ± 2,200 BP, Indigirka River) using ancient DNA.
+**Objective:** Reconstruct phylogeny and evolutionary history of *_Microtus (S) stenocranius egorovi_* (37,700 ± 2,200 BP, Indigirka River) using ancient DNA.
 
 **The tasks**: 
 
 - To perform quality control and preprocessing of raw reads;
 - To estimate contamination levels and confirm the ancient origin of the sample;
-- To assemble the complete mitochondrial genome of the ancient vole as well as some other Microtus species;
+- To assemble the mitochondrial genome of the ancient vole as well as some other _Microtus_ species;
 - To reconstruct phylogenetic trees based on complete mitogenomes and cytochrome b sequences;
-- To assume the distribution of M. miurus during the Late Pleistocene.
+- To assume the distribution of _M. miurus_ during the Late Pleistocene.
 
 ---
 
@@ -169,6 +169,7 @@ The `rename_tree.py` script uses only Python standard library — no additional 
 
 - **Tools:** `bwa aln`, `samtools`, `picard`, `mapDamage`
 - **Action:** Maps reads to reference (optimized for aDNA: `-n 0.04`), marks duplicates, and assesses cytosine deamination patterns.
+- **Input:** Collapsed FASTQ (~98.2M reads).
 - **Output:** BAM file, mapDamage plots (confirms authenticity).
 
 ### Step 4: Ancient Mitogenome Assembly (Mapping-based)
@@ -177,7 +178,8 @@ The `rename_tree.py` script uses only Python standard library — no additional 
 
 - **Tools:** `bwa`, `bcftools`
 - **Action:** Generates a consensus sequence from mapped reads.
-- **Reference:** _M. abbreviatus_ mitogenome.
+- **Reference:** _M. miurus_ mitogenome (GenBank: MT381943).
+- **Input:** Collapsed FASTQ (~98.2M reads).
 - **Output:** `consensus.fasta` (Ancient mitogenome), VCF file.
 
 ### Step 5: De Novo Mitogenome Assembly (Modern Relatives)
@@ -185,10 +187,10 @@ The `rename_tree.py` script uses only Python standard library — no additional 
 **Script:** `scripts/05_de_novo_mitogenome_assembly.sh`
 
 - **Tools:** `fastq-dump`, `MitoZ` (with MEGAHIT assembler)
-- **Action:** Assembles mitogenomes for modern _M. mexicanus_ and _M. oregoni_ from SRA data.
+- **Action:** Assembles mitogenomes for modern _M. mexicanus_ and _M. oregoni_ from GenBank SRA data.
 - **Output:** FASTA files for modern reference mitogenomes.
 
-### Step 6: Phylogeny of Microtus Mitogenomes (Main Analysis)
+### Step 6: Phylogeny of _Microtus_ Mitogenomes (Main Analysis)
 
 **Script:** `scripts/06_Microtus_mitogenome_phylogeny.sh`
 
@@ -198,8 +200,8 @@ The `rename_tree.py` script uses only Python standard library — no additional 
 - **Output:** `mitogenome_tree_full.treefile` (Primary topology).
 
 #### 📊 Data
-- **Ingroup:** 25 *Microtus* mitogenomes (22 downloaded from GenBank + 3 newly assembled)
-- **Outgroup:** *Arvicola amphibius* (MT381921)
+- **Ingroup:** 25 *_Microtus_* mitogenomes (22 downloaded from GenBank + 3 newly assembled)
+- **Outgroup:** *_Arvicola amphibius_* (GenBank: MT381921)
 - **Total taxa:** 26
 
 ### Step 7: Alternative Phylogeny (Trimmed Alignment)
@@ -221,7 +223,7 @@ The `rename_tree.py` script uses only Python standard library — no additional 
 
 #### 📊 Data
 - **Gene**: Cytochrome b (cytb), ~1140 bp
-- **Taxa**: 67 sequences (62 *M. miurus*, *M. abbreviatus*, outgroups: M. montanus, M. longicaudus, M. ochrogaster, Stenocranius gregalis + ancient Indigirka vole)
+- **Taxa**: 67 sequences (62 *_M. miurus_*, *_M. abbreviatus_*, outgroups: _M. montanus_, _M. longicaudus_, _M. ochrogaster_, _Stenocranius gregalis_ + ancient Indigirka vole)
 - **Ancient sample**: ancient Indigirka vole (37,700 ± 2,200 years BP)
 - **Source**: NCBI GenBank (complete cyt b genes with voucher specimens)
 
@@ -252,20 +254,20 @@ The `rename_tree.py` script uses only Python standard library — no additional 
 - Bacteria: ~9,000 reference genomes
 - Viruses: ~15,041 genomes
 - Fungi: ~664 genomes
-- Microtus: 4 species
+- _Microtus_: 4 species
 
 **Classification Results:**
 
-| Category                  | Percentage | Reads     |
-| ------------------------- | ---------- | --------- |
-| **Classified**            | 65.18%     | 64.0M     |
-| **Unclassified**          | 34.82%     | 34.2M     |
-| **Microtus (endogenous)** | **34.19%** | **33.6M** |
-| └─ To species level       | ~10%       | 10.1M     |
-| └─ To genus only          | ~24%       | 23.4M     |
-| Bacteria                  | ~29%       | 28.9M     |
-| Human contamination       | 0.11%      | 0.1M      |
-| Fungi                     | 0.61%      | 0.6M      |
+| Category                    | Percentage | Reads     |
+| --------------------------- | ---------- | --------- |
+| **Classified**              | 65.18%     | 64.0M     |
+| **Unclassified**            | 34.82%     | 34.2M     |
+| **_Microtus_ (endogenous)** | **34.19%** | **33.6M** |
+| └─ To species level         | ~10%       | 10.1M     |
+| └─ To genus only            | ~24%       | 23.4M     |
+| Bacteria                    | ~29%       | 28.9M     |
+| Human contamination         | 0.11%      | 0.1M      |
+| Fungi                       | 0.61%      | 0.6M      |
 
 
 **Kraken taxonomic classification using exact k-mer matches to find the lowest common ancestor (LCA) of a given sequence. Top taxa.**
@@ -310,7 +312,7 @@ Complete ancient DNA authentication data: cytosine deamination patterns (5' C→
 | _M. mexicanus_ | 16,307      |
 | _M. oregoni_   | 16,294      |
 
-### Phylogeny of Microtus Mitogenomes
+### Phylogeny of _Microtus_ Mitogenomes
 
 **Best-fit model:** `GTR+F+I+R3` (selected by ModelFinder, BIC criterion)
 
@@ -322,25 +324,23 @@ Complete ancient DNA authentication data: cytosine deamination patterns (5' C→
 
 _Note: The trimmed alignment reduced matrix length from 22,907 bp to 10,124 bp. However, the untrimmed tree yielded a topology more consistent with established _Microtus_ systematics, so it is used as the primary result._
 
-**Ancient Indigirka vole within Microtus mitogenome phylogeny**
+**Ancient Indigirka vole within _Microtus_ mitogenome phylogeny**
 
 ![mito_tree](figures/trees/mitogenome_tree.png)
-
-**Conclusion:** The ancient specimen fits reliably into the singing vole clade Microtus miurus with maximum statistical support, which clearly confirms its species affiliation with American voles.
 
 🌳 [mitogenome_tree_full.treefile](results/trees/mitogenome_tree_full.treefile)  
 Maximum Likelihood tree based on complete mitogenomes (26 taxa, 22,907 bp, GTR+F+I+R3 model).
 
-### Cytochrome b Phylogeny of *Microtus*
+### Cytochrome b Phylogeny of *_Microtus_*
 
 **Best-fit model**: `HKY+F+I+G4` (ModelFinder, BIC)
 
-| Metric                                        | Value                                      |
-| --------------------------------------------- | ------------------------------------------ |
-| Root Age (_Microtus_)                         | 0.985 Myr [95% HPD: 0.102–1.446]           |
-| Ancient Sample Placement                      | Basal sister lineage to modern *M. miurus* |
-| Divergence (Ancient + Wrangel vs. Main Clade) | ~0.046–0.559 Myr [95% HPD]                 |
-| MCMC Convergence                              | Stable (ESS > 200 for all key parameters)  |
+| Metric                                        | Value                                        |
+| --------------------------------------------- | -------------------------------------------- |
+| Root Age (_Microtus_)                         | 0.985 Myr [95% HPD: 0.102–1.446]             |
+| Ancient Sample Placement                      | Basal sister lineage to modern *_M. miurus_* |
+| Divergence (Ancient + Wrangel vs. Main Clade) | ~0.046–0.559 Myr [95% HPD]                   |
+| MCMC Convergence                              | Stable (ESS > 200 for all key parameters)    |
 
 **MCMC Convergence Check (Tracer)**
 
@@ -349,11 +349,9 @@ Maximum Likelihood tree based on complete mitogenomes (26 taxa, 22,907 bp, GTR+F
 *All key parameters show ESS > 200, stable trace plots, and unimodal posterior distributions, confirming successful MCMC convergence.*
 
 
-**Ancient Indigirka vole within Microtus miurus cytb phylogeny** 
+**Ancient Indigirka vole within _Microtus miurus_ cytb phylogeny** 
 
 ![cytb_tree](figures/trees/cytb_dated_tree.png)
-
-**Conclusion:** The 37,700-year-old specimen represents a distinct late Pleistocene lineage sister to modern _M. miurus_, confirming genetic continuity across Beringia and the persistence of ancient haplogroups in isolated refugia (e.g., Wrangel Island).
 
 🌳 [cytb_tree_ml_named.treefile](results/trees/cytb_tree_ml_named.treefile)  
 Maximum Likelihood tree from cytochrome b alignment (67 taxa, ~1,140 bp, HKY+F+I+G4 model).
@@ -363,6 +361,12 @@ Time-calibrated Maximum Clade Credibility (MCC) tree from Bayesian tip-dating an
 
 📊 [cytb_tip_dating.log](results/trees/cytb_tip_dating.log)  
 BEAST2 MCMC sampling statistics (20 million generations). Open in Tracer to verify ESS > 200 and inspect posterior distributions of divergence times, clock rates, and tree priors.
+
+---
+
+## Conclusion
+
+Ancient _M. miurus_ (37.7 kya) forms a early derivate sister lineage to modern _M. miurus_ clade (americans voles). Represents a late Pleistocene distinct lineage that persisted in Siberia, confirming long-term circulation of miurus-like voles across Beringia.
 
 ---
 
@@ -379,9 +383,9 @@ Detailed list of key output files:
 
 ---
 
-## Literature
+## References
 
-- Golenishchev, F. N. (2008). The narrow-skulled vole Egorov (Rodentia, Arvicolinae) from the Late Pleistocene of Western Siberia—a North American migrant? Paleontological Journal, 42(2), 193–198. https://doi.org/10.1134/S0031030108020080
+- Golenishchev, F. N. (2008). Egorov’s narrow-skulled vole (Rodentia, Arvicolinae) from the Late Pleistocene of Eastern Siberia, a North American immigrant. Paleontological Journal, 42, 292–296. https://doi.org/10.1134/S0031030108030118
 - Cole, F. R., & Wilson, D. E. (2010). Microtus miurus (Rodentia: Cricetidae). Mammalian Species, 42(855), 75–89. https://doi.org/10.1644/855.1
 - Weksler, M., Lanier, H. C., & Olson, L. E. (2010). Eastern Beringian biogeography: historical and spatial genetic structure of singing voles in Alaska. Journal of Biogeography, 37(8), 1414–1431. https://doi.org/10.1111/j.1365-2699.2010.02310.x
 - Lord, E., et al. (2025). Genome analyses suggest recent speciation and postglacial isolation in the Norwegian lemming. Proceedings of the National Academy of Sciences, 122(28), e2424333122. https://doi.org/10.1073/pnas.2424333122
@@ -396,9 +400,13 @@ Detailed list of key output files:
 - De Jong, M. J., et al. (2023). Range-wide whole-genome resequencing of the brown bear reveals drivers of intraspecies divergence. Communications Biology, 6(1), 153. https://doi.org/10.1038/s42003-023-04514-w
 - Meng, G., Li, Y., Yang, C., & Liu, S. (2019). MitoZ: a toolkit for animal mitochondrial genome assembly, annotation and visualization. Nucleic acids research, 47(11), e63. https://doi.org/10.1093/nar/gkz173.
 - Danecek P, Bonfield JK, Liddle J, Marshall J, Ohan V, Pollard MO, Whitwham A, Keane T, McCarthy SA, Davies RM, Li H. Twelve years of SAMtools and BCFtools. GigaScience. 2021;10(2):giab008. doi:10.1093/gigascience/giab008
+- Broad Institute. "Picard Toolkit." GitHub Repository. 2019. http://broadinstitute.github.io/picard/
+- Katoh, K., & Standley, D. M. (2013). MAFFT multiple sequence alignment software version 7: improvements in performance and usability. Molecular Biology and Evolution, 30(4), 772-780. https://doi.org/10.1093/molbev/mst010
 
 ---
 
-**Authors:** Natalia Laskina, Liliya Revyakina  
+**Authors:** 
+- Natalia Laskina lask.natalia@gmail.com 
+- Liliya Revyakina gigliolaverde@gmail.com   
 
 **Year:** 2026
