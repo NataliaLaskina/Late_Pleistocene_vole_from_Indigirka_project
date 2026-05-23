@@ -17,6 +17,7 @@ In the Late Pleistocene deposits of the upper Indigirka River (Eastern Yakutia, 
 ## 📂 Project Structure
 
 This repository contains the code, scripts, and minimal essential outputs. Large data files (raw FASTQ, BAM files, reference genomes, large intermediate files, Kraken2 database (223 GB)) are **not** stored in Git.
+This project is implemented as a collection of Bash shell scripts that orchestrate the complete ancient DNA analysis workflow, ensuring transparency and reproducibility.
 
 ### 📦 Repository Structure (What's on GitHub)
 
