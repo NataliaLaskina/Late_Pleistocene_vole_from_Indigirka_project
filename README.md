@@ -25,9 +25,11 @@ This repository contains the code, scripts, and minimal essential outputs. Large
 ├── README.md                                  # This file
 ├── environments/                              # Conda dependencies                   
 │   ├── environment.yml
-│   ├── environment_for assembly.yml           
+│   └── environment_for assembly.yml           
 ├── .gitignore                                 # Exclusions for large files
 │
+├── data/
+│   └── modern_miurus_reads_links.txt
 ├── scripts/                                   # All pipeline scripts (executable)
 │   ├── 01_preprocess_ancient_dna.sh
 │   ├── 02_build_kraken_db.sh
@@ -40,9 +42,9 @@ This repository contains the code, scripts, and minimal essential outputs. Large
 │   ├── 09_cytb_ml_tree.sh
 │   ├── rename_tree.py                         # Utility: clean tree labels
 │   ├── draw_tree.R                            # Tree Visualization
-│   └── kraken_build/
-│       └── download_kraken.sh                 # Helper: download genomes
-    └──trial_de_novo_
+│   ├──kraken_build/
+│   │   └── download_kraken.sh                 # Helper: download genomes
+│   └──trial_de_novo_assembly.sh
 ├── figures/                     
 │   ├── trees/
 │   │   ├── cytb_dated_tree.jpg
@@ -60,15 +62,26 @@ This repository contains the code, scripts, and minimal essential outputs. Large
     │   └── cytb_tip_dating.log                # Сontains the MCMC sampling statistics from the BEAST2 Bayesian dating analysis (open it in Tracer)
     └── reports/
         ├── multiqc_report.html                # Full QC report (interactive)
-        └── mapdamage_results/                 # KEY mapDamage outputs
-            ├── Fragmisincorporation_plot.pdf  # C→T damage pattern
-            ├── Length_plot.pdf                # Fragment length distribution
-            ├── 5pCtoT_freq.txt                # C→T frequencies
-            ├── 3pGtoA_freq.txt                # G→A frequencies
-            ├── lgdistribution.txt             # Length distribution
-            ├── Stats_out_MCMC_post_pred.pdf   # MCMC posterior predictive check diagnostics (model fit validation)
-            └── Runtime_log.txt                # Run log
-               
+        ├── busco_results/
+        │   └── busco_result
+        │
+        ├──fastqc_results/                
+        │   ├── ancient_vole.collapsed_fastqc.html  
+        │   ├── ancient_vole_R1_fastqc_before_preprocessing.html            
+        │   ├── ancient_vole_R2_fastqc_before_preprocessing.html                
+        │   └── modern_miurus_SRR26061978_1_fastqc.html 
+        │
+        ├── mapdamage_results/                 # KEY mapDamage outputs
+        │   ├── Fragmisincorporation_plot.pdf  # C→T damage pattern
+        │   ├── Length_plot.pdf                # Fragment length distribution
+        │   ├── 5pCtoT_freq.txt                # C→T frequencies
+        │   ├── 3pGtoA_freq.txt                # G→A frequencies
+        │   ├── lgdistribution.txt             # Length distribution
+        │   ├── Stats_out_MCMC_post_pred.pdf   # MCMC posterior predictive check diagnostics (model fit validation)
+        │   └── Runtime_log.txt                # Run log
+        │
+        └── genomescope_results
+                └── GnomeScope_SRR26061978_1_kmer21.html
 ```
 
 ### 🧬 Generated Results Structure (Created Locally)
