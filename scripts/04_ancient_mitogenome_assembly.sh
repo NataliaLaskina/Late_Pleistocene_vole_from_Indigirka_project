@@ -2,7 +2,7 @@
 #!/bin/bash
 #===============================================================================
 # Pipeline: Assembly of ancient Microtus miurus mitogenome
-# Method: Mapping to reference genome (M. abbreviatus)
+# Method: Mapping to reference genome (M. miurus)
 # Dependencies: bwa v0.7.17, samtools v1.10, bcftools v1.10+, bedtools v2.31+
 #===============================================================================
 
@@ -12,9 +12,13 @@ set -euo pipefail  # Exit on error, undefined vars, pipe failures
 # CONFIGURATION
 #===============================================================================
 
+# Download from NCBI GenBank
+# Search: Microtus miurus mitogenome (GenBank: MT381943)
+# Save as: PROJECT_DIR/references/mitogenomes/M_miurus_mito.fasta
+
 # Paths (relative to project root)
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-REF_GENOME="$PROJECT_DIR/references/mitogenomes/M_abbreviatus_mito.fasta"
+REF_GENOME="$PROJECT_DIR/references/mitogenomes/M_miurus_mito.fasta"
 READS="$PROJECT_DIR/results/preprocessing/adapterremoval/miurus.collapsed.fastq.gz"
 OUTDIR="$PROJECT_DIR/results/mito_mapping"
 
@@ -23,7 +27,7 @@ mkdir -p "$OUTDIR"/{01_reference,02_mapping,03_consensus,04_qc}
 
 # Parameters for ancient DNA
 BWA_THREADS=8
-BWA_MISMATCH_RATE=0.04    # Allow up to 4% mismatches (aDNA damage + cross-species)
+BWA_MISMATCH_RATE=0.04     # Allow up to 4% mismatches (aDNA damage + cross-species)
 BWA_SEED_LEN=1024          # Disable seeding (important for short aDNA reads)
 SAMTOOLS_MIN_MAPQ=20       # Minimum mapping quality (error probability ≤1%)
 BCFTOOLS_MIN_DP=3          # Minimum depth for variant calling
