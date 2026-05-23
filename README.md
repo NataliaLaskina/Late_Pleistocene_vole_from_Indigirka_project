@@ -2,7 +2,7 @@
 
 In the Late Pleistocene deposits of the upper Indigirka River (Eastern Yakutia, Russia), paleontologists discovered a mummified vole specimen initially assigned to the narrow-headed vole _Stenocranius gregalis_. Subsequent morphological analysis of the masticatory surface pattern revealed affinities with the singing vole _Microtus miurus_, a species currently distributed exclusively in the tundra zone of North America. This finding raises an intriguing biogeographical question regarding the historical distribution of M. miurus and its potential presence in Eurasia during the Late Pleistocene. 
 
-**Objective:** Reconstruct phylogeny and evolutionary history of *_Microtus (S) stenocranius egorovi_* (37,700 ± 2,200 BP, Indigirka River) using ancient DNA.
+**Objective:** to resolve the phylogenetic position of the ancient specimen (radiocarbon age: 37,700 ± 2,200 years BP) using paleogenomic approaches and to reconstruct its evolutionary history in the context of Beringian biogeography.
 
 **The tasks**: 
 
