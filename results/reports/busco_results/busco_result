@@ -1,0 +1,13 @@
+
+    -------------------------------------------------------------------------------------------
+    |Results from dataset mammalia_odb10                                                       |
+    -------------------------------------------------------------------------------------------
+    |C:52.8%[S:51.8%,D:1.0%],F:20.2%,M:26.9%,n:9226,E:9.2%                                     |
+    |4874    Complete BUSCOs (C)    (of which 447 contain internal stop codons)                |
+    |4779    Complete and single-copy BUSCOs (S)                                               |
+    |95    Complete and duplicated BUSCOs (D)                                                  |
+    |1867    Fragmented BUSCOs (F)                                                             |
+    |2485    Missing BUSCOs (M)                                                                |
+    |9226    Total BUSCO groups searched                                                       |
+    -------------------------------------------------------------------------------------------
+
