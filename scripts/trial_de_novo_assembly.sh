@@ -12,9 +12,6 @@ echo ""
 #1. CHECKING OF THE ENVIRONMENT
 # ============================================================================
 
-# Activate environment
-conda activate assembly_pipeline
-echo "✓ Activated environment: $CONDA_DEFAULT_ENV"
 
 # Verify installations
 echo ""

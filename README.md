@@ -410,7 +410,17 @@ For beginning download the data using the links in data/modern_miurus_reads_link
 conda env create -f environments/environment_for_assembly.yml
 ```
 
-The pipeline of the best attempt is the following:
+The report from FASTQC is available in the folder "results/reports/fastqc_results" (modern_miurus_SRR26061978_1_fastqc.html).
+The histogram of k-mer distribution was made with jellyfish:
+
+```bash
+jellyfish count -C -m 21 -s 20G -t 32 -o SRR26061978_kmer_21.jf SRR26061978_1.fastq SRR26061978_2.fastq
+
+jellyfish histo -o kmer_histogram_21.txt SRR26061978_kmer_21.jf
+```
+The report from Genomescope is available in in the folder "results/reports/fastqc_results/genomescope_results".
+
+The pipeline of the best assembly attempt is the following:
 
 ---
 
@@ -418,9 +428,9 @@ The pipeline of the best attempt is the following:
 
 ### Step 1: Environment Activation & Package Verification
 
-- **Action:** Activates the pre-configured `assembly_pipeline` Conda environment and verifies that all required tools are correctly installed and accessible. Each tool's version is displayed to confirm successful installation.
+- **Action:** Verifies that all required tools are correctly installed and accessible. Each tool's version is displayed to confirm successful installation.
 - **Input:** Existing Conda environment named `assembly_pipeline`
-- **Output:** Confirmation of environment activation and version information for each tool (lighter, megahit, BUSCO, redundans).
+- **Output:** Version information for each tool (lighter, megahit, BUSCO, redundans).
 
 ---
 
@@ -481,6 +491,13 @@ The pipeline of the best attempt is the following:
 | 3 | MEGAHIT | Corrected FASTQ | Contigs (`final.contigs.fa`) |
 | 4 | Redundans | Contigs | Reduced assembly |
 | 5 | BUSCO | Reduced assembly | Completeness report |
+
+
+For running this pipeline make scripts executable (Run once):
+
+```bash
+chmod +x scripts/trial_de_novo_assembly.sh
+```
 
 ## Results
 
